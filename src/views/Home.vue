@@ -1,14 +1,14 @@
 <template lang="pug">
-TodoApp
+todo-app-container
 </template>
 
 <script>
-import TodoApp from '../components/TodoApp';
+import TodoAppContainer from '../containers/todoApp.container';
 
 export default {
   name: 'homePage',
   components: {
-    TodoApp
-  }
+    TodoAppContainer
+  },
 };
 </script>

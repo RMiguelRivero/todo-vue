@@ -8,40 +8,71 @@
       v-model="newTodo.text"
       @keyup.enter="addTodo()"
     )
-    TodoList
-    TodoListFilter
+    TodoList(
+      :todos="todos"
+      :handleToggleTodo="handleToggleTodo"
+      :handleRemoveTodo="handleRemoveTodo"
+    )
+    TodoListFilter(
+      :activeFilter="activeFilter"
+      :handleChangeFilter="handleChangeFilter"
+    )
 </template>
 
 <script>
 import TodoList from '../components/TodoList.vue';
 import TodoListFilter from '../components/TodoListFilter.vue';
 import { TodoActions } from '../store/todo/actions';
-import * as uuidv4 from 'uuid/v4';
 
 export default {
   name: 'TodoApp',
   components: { TodoList, TodoListFilter },
-  data: function() {
-    return {
-      newTodo: {
-        id: uuidv4(),
-        text: '',
-        completed: false
-      }
+  props: {
+    todos: {
+      type: Array,
+      required: true,
+    },
+    newTodo: {
+      type: Object,
+      required: true
+    },
+    activeFilter: {
+      type: String,
+      required: true,
+    },
+    handleAddTodo: {
+      type: Function,
+      required: true,
+    },
+    restoreNewTodo: {
+      type: Function,
+      required: true,
+    },
+    handleChangeFilter: {
+      type: Function,
+      required: true,
+    },
+    handleChangeNewTodo: {
+      type: Function,
+      required: true,
+    },
+    handleToggleTodo: {
+      type: Function,
+      required: true,
+    },
+    handleRemoveTodo: {
+      type: Function,
+      required: true,
     }
   },
   methods: {
-    addTodo: function() {
+    addTodo() {
       if (!this.newTodo.text.trim()) {
         return;
       }
-      this.$store.commit(TodoActions.addTodo(this.newTodo));
-      this.newTodo = {
-        id: uuidv4(),
-        text: '',
-        completed: false
-      }
-    }
+      this.handleAddTodo(this.newTodo);
+      this.restoreNewTodo();
+    },
   }
 }
 </script>

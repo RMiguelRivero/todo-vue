@@ -7,6 +7,8 @@ transition-group(
     v-for="todo of todos"
     :key="todo.id"
     v-bind="todo"
+    :handleToggleTodo="handleToggleTodo"
+    :handleRemoveTodo="handleRemoveTodo"
   )
 </template>
 
@@ -16,10 +18,23 @@ import TodoListItem from './TodoListItem.vue';
 
 export default {
   name: 'TodoList',
-  computed: mapGetters(['todos']),
   components: {
     TodoListItem
-  }
+  },
+  props: {
+    todos: {
+      type: Array,
+      required: true,
+    },
+    handleToggleTodo: {
+      type: Function,
+      required: true,
+    },
+    handleRemoveTodo: {
+      type: Function,
+      required: true,
+    }
+  },
 }
 </script>
 

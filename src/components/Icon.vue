@@ -28,7 +28,7 @@ export default {
     },
     color: {
       type: String,
-      default: '#000000'
+      default: 'currentColor'
     },
     spin: {
       type: Boolean,

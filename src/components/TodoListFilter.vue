@@ -3,13 +3,13 @@
   :class="activeClass"
 )
   .filter.none(
-    @click="filter('none')"
+    @click="handleChangeFilter('none')"
   ) All
   .filter.active(
-    @click="filter('active')"
+    @click="handleChangeFilter('active')"
   ) Active
   .filter.completed(
-    @click="filter('completed')"
+    @click="handleChangeFilter('completed')"
   ) Completed
 </template>
 
@@ -20,17 +20,19 @@ import { activeFilter } from '../store/selectors';
 
 export default {
   name: 'TodoListFilter',
-  computed: {
-    ...mapState({
-      activeFilter,
-    }),
-    activeClass() {
-      return `filter-${this.activeFilter}`;
+  props: {
+    activeFilter: {
+      type: String,
+      required: true,
+    },
+    handleChangeFilter: {
+      type: Function,
+      required: true,
     },
   },
-  methods: {
-    filter(value) {
-      this.$store.commit(FilterActions.FILTER_TODOS, { filter: value });
+  computed: {
+    activeClass() {
+      return `filter-${this.activeFilter}`;
     },
   },
 }

@@ -6,17 +6,15 @@ li.todo(
   input.input(
     type="checkbox"
     :checked="completed"
-    @click.prevent="toggleComplete()"
+    @click.prevent="handleToggleTodo(id)"
   )
-  .text {{ text }}
+
+  label.text {{ text }}
 
   Icon.icon(
     :icon="'close-x'"
-    :size="16",
-    :color="'#663399'"
-    :spin="false"
     :clickable="true"
-    @click="remove()"
+    @click="handleRemoveTodo(id)"
   )
 </template>
 
@@ -41,22 +39,22 @@ export default {
       type:Boolean,
       required: true,
     },
+    handleToggleTodo: {
+      type: Function,
+      required: true,
+    },
+    handleRemoveTodo: {
+      type: Function,
+      required: true,
+    },
   },
   computed: {
     completeClass: function() {
       return {
-        'todo-completed' :this.completed,
+        'todo-completed': this.completed,
       };
     }
   },
-  methods: {
-    remove: function () {
-      this.$store.commit(TodoActions.removeTodo(this.id));
-    },
-    toggleComplete: function(){
-      this.$store.commit(TodoActions.toggleTodo(this.id));
-    }
-  }
 }
 </script>
 
@@ -69,6 +67,9 @@ export default {
   width 100%
   margin-bottom 0.5rem
   color $primary-color
+
+  .text
+    margin 0 1rem
 
   &-completed
     color $grey-lighter-5
