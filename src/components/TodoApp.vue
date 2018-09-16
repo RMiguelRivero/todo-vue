@@ -1,21 +1,22 @@
 <template lang="pug">
 .todo-app
-  .title YOUR TODOS
-  input.new-todo(
-    type="text",
-    placeholder="New todo",
-    v-model="newTodo.text",
-    @keyup.enter="addTodo()"
-  )
-  TodoList
-  TodoListFilter
+  .wrapper
+    .title YOUR TODOS
+    input.new-todo(
+      type="text"
+      placeholder="New todo"
+      v-model="newTodo.text"
+      @keyup.enter="addTodo()"
+    )
+    TodoList
+    TodoListFilter
 </template>
 
 <script>
-import TodoList from '@/components/TodoList.vue';
-import TodoListFilter from '@/components/TodoListFilter.vue';
+import TodoList from '../components/TodoList.vue';
+import TodoListFilter from '../components/TodoListFilter.vue';
+import { TodoActions } from '../store/todo/actions';
 import * as uuidv4 from 'uuid/v4';
-import { TodoMutations } from '../store/mutations.js';
 
 export default {
   name: 'TodoApp',
@@ -34,7 +35,7 @@ export default {
       if (!this.newTodo.text.trim()) {
         return;
       }
-      this.$store.commit(TodoMutations.ADD_TODO, { todo: this.newTodo});
+      this.$store.commit(TodoActions.addTodo(this.newTodo));
       this.newTodo = {
         id: uuidv4(),
         text: '',
@@ -49,20 +50,26 @@ export default {
 @import "../css/variables.styl"
 
 .todo-app
-  max-width 600px
+  width 100%
   display flex
-  flex-direction column
-  margin-top 2rem
+  justify-content center
+  flex-direction row
 
-  .title
-    color $primary-color
-    font-size 2rem
-    margin 0 0 1rem 0
+  .wrapper
+    max-width 600px
+    display flex
+    flex-direction column
+    margin-top 2rem
 
-  .new-todo
-    margin 0 0 1rem 0
-    padding 0.5rem
-    border-radius 3px
-    border solid 1px $grey-ligter-5
+    .title
+      color $primary-color
+      font-size 2rem
+      margin 0 0 1rem 0
+
+    .new-todo
+      margin 0 0 1rem 0
+      padding 0.5rem
+      border-radius 3px
+      border solid 1px $grey-lighter-5
 
 </style>

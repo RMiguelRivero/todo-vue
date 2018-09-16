@@ -5,6 +5,7 @@
   "author": "miguelrivero <rmiguelrivero@gmail.com>",
   "private": true,
   "scripts": {
+    "storybook": "start-storybook -s ./ -p 9001 -c .storybook",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
@@ -20,6 +21,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/vue": "^3.4.8",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",

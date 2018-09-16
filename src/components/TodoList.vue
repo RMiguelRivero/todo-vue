@@ -4,15 +4,15 @@ transition-group(
   tag="ul"
 )
   TodoListItem(
-    v-for="todo of todos",
-    :key="todo.id",
-    :todo="todo"
+    v-for="todo of todos"
+    :key="todo.id"
+    v-bind="todo"
   )
 </template>
 
 <script>
-import TodoListItem from '@/components/TodoListItem.vue';
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import TodoListItem from './TodoListItem.vue';
 
 export default {
   name: 'TodoList',

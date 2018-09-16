@@ -7,7 +7,7 @@
   ) All
   .filter.active(
     @click="filter('active')"
-  ) Left
+  ) Active
   .filter.completed(
     @click="filter('completed')"
   ) Completed
@@ -15,22 +15,24 @@
 
 <script>
 import { mapState } from 'vuex';
-import { FilterMutations } from '../store/mutations'
+import { FilterActions } from '../store/filter/actions';
+import { activeFilter } from '../store/selectors';
 
 export default {
   name: 'TodoListFilter',
-  methods: {
-    filter: function(value) {
-      if (this.todosFilter === value) return;
-      this.$store.commit(FilterMutations.FILTER_TODOS, { filter: value });
-    }
-  },
   computed: {
-    ...mapState(['todosFilter']),
-    activeClass: function() {
-      return `filter-${this.todosFilter}`
-    }
-  }
+    ...mapState({
+      activeFilter,
+    }),
+    activeClass() {
+      return `filter-${this.activeFilter}`;
+    },
+  },
+  methods: {
+    filter(value) {
+      this.$store.commit(FilterActions.FILTER_TODOS, { filter: value });
+    },
+  },
 }
 </script>
 
@@ -49,6 +51,7 @@ export default {
   &.filter-completed .completed
     border solid 1px #c1c1c1
     border-radius 3px
+    pointer-events none
 
   &.filter-none .filter:hover:not(.none)
   &.filter-active .filter:hover:not(.active)

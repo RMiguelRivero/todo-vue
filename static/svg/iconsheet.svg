@@ -8,6 +8,15 @@
 <g id="arrow-right">
 	<polygon points="261.2,98.8 218.8,141.2 437.6,360 218.8,578.8 261.2,621.2 522.4,360 	"/>
 </g>
+<g id="arrow-left">
+	<polygon style="transform: rotate(180deg); transform-origin: 50% 50%;" points="261.2,98.8 218.8,141.2 437.6,360 218.8,578.8 261.2,621.2 522.4,360 	"/>
+</g>
+<g id="arrow-down">
+	<polygon style="transform: rotate(90deg); transform-origin: 50% 50%;" points="261.2,98.8 218.8,141.2 437.6,360 218.8,578.8 261.2,621.2 522.4,360 	"/>
+</g>
+<g id="arrow-up">
+	<polygon style="transform: rotate(-90deg); transform-origin: 50% 50%;" points="261.2,98.8 218.8,141.2 437.6,360 218.8,578.8 261.2,621.2 522.4,360 	"/>
+</g>
 <g id="email">
 	<path d="M0,120v480h720V120H0z M634.7,180L360,429.7L85.3,180H634.7z M60,540V197.6l300,272.7l300-272.7V540H60z"/>
 </g>

@@ -1,30 +1,40 @@
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
+<template lang="pug">
+#app
+  the-header-container
+  main
+    router-view
 </template>
 
 <script>
-module.exports = {
-  name: 'App'
-}
+import theHeaderContainer from './containers/header.container';
+
+export default {
+  name: 'App',
+  components: {
+    theHeaderContainer,
+  },
+};
 </script>
 
 <style lang="stylus">
 @import "./css/reset.css"
 
 #app
-  position fixed
+  position relative
   display flex
-  justify-content center
+  flex-direction column
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  top 0
-  bottom 0
-  left 0
-  right 0
+
+  main
+    display flex
+    flex-direction row
+    justify-content stretch
+    align-items stretch
+    height calc(100vh - 3rem)
+    padding 1rem
 
 </style>
