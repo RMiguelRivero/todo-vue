@@ -1,16 +1,12 @@
 const isValid = (value, possibleValues) => possibleValues.includes(value)
 
-const iconTypes = [
-  'close-x', 'arrow-right', 'arrow-left', 'arrow-down', 'arrow-up', 'email',
-  'search', 'hamburger', 'tick', 'circle',
-  'circle-tick', 'circle-x', 'circle-attention',
-  'circle-checkbox-ticked', 'circle-checkbox-unticked',
-];
+import { iconNames } from './iconsNames';
+const iconTypes = Object.values(iconNames);
 const iconSizes = [10, 12, 14, 16, 20, 24, 64, 128, 256];
 
 const btnSizes = ['large', 'regular', 'small'];
 const btnTypes = ['primary', 'secondary', 'terciary'];
-const themes = ['dark', 'light']
+const themes = ['dark', 'light'];
 
 export const iconSizeValidator = (value) => isValid(value, iconSizes);
 export const iconTypeValidator = (value) => isValid(value, iconTypes);
